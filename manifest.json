@@ -1,22 +1,26 @@
 {
-  "manifest_version": 2,
+    "manifest_version": 2,
 
-  "name": "chrome find amazon customer id extension",
-  "description": "This extension will find customer ID for user",
-  "version": "1.0",
+    "name": "chrome find amazon customer id extension",
+    "description": "This extension will find customer ID for user",
+    "version": "1.0",
 
-  "content_scripts": [
-    {
-      "matches": ["https://www.amazon.com/gp/profile/*"],
-      "js": ["jquery.js", "content.js"],
-      "run_at": "document_end"
-    }
-  ],
+    "content_scripts": [
+        {
+            "matches": [
+                "https://www.amazon.com/gp/profile/*",
+                "https://sellercentral.amazon.com/gp/*"
+            ],
+            "js": ["jquery.js", "api/customerData.js", "content.js"],
+            "run_at": "document_end"
+        }
+    ],
 
-  "browser_action": {
-   "default_icon": "icon.png"
-  },
-  "permissions": [
-   "activeTab"
-   ]
+    "browser_action": {
+        "default_icon": "icon.png"
+    },
+    "permissions": [
+        "activeTab",
+        "https://worldlinkcustomerdata.herokuapp.com/*"
+    ]
 }
