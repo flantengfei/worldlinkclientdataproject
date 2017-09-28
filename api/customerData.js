@@ -23,6 +23,18 @@ class customerData {
         xhr.open("GET", `${this.searchDataUrl}${customerId}`, true);
         xhr.send();
     }
+
+    captureData(data) {
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4) {
+                console.log(xhr.response);
+            }
+        };
+        xhr.open("POST", this.addDataUrl, true);
+        xhr.setRequestHeader("Content-type", "application/json");
+        xhr.send(data);
+    }
 }
 
 const customerApi = new customerData();
