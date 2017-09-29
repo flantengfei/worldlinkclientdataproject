@@ -1,3 +1,5 @@
+let dataCache = [];
+
 const parseDataFromPage = () => {
     var data = [];
     if ($("tr input.cust-id").length === 0) {
@@ -32,9 +34,17 @@ const parseDataFromPage = () => {
 };
 
 const captureCustomerData = () => {
-    const data = parseDataFromPage();
-    if (data !== false) {
-        console.log(data); //101743
-        customerApi.captureData(JSON.stringify(data));
-    }
+    let data = [];
+    const keepChecking = setInterval(() => {
+        //console.log("checking page data...");
+        data = parseDataFromPage();
+        if (JSON.stringify(data) !== JSON.stringify(dataCache)) {
+            //console.log("not match");
+            if (data !== false) {
+                dataCache = data;
+                //console.log("capture Data !!!");
+                customerApi.captureData(JSON.stringify(data));
+            }
+        }
+    }, 3000);
 };

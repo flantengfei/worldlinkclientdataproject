@@ -28,7 +28,17 @@ class customerData {
         const xhr = new XMLHttpRequest();
         xhr.onreadystatechange = () => {
             if (xhr.readyState === 4) {
-                console.log(xhr.response);
+                const responseObj = JSON.parse(xhr.response);
+                const total = responseObj.total;
+                const inserted = responseObj.inserted;
+                $("div[customer-data-capture-notice]").remove();
+                $("body").prepend(
+                    `<div style="background: greenyellow;text-align: center;position: fixed;z-index: 99999999; width: 100%;" customer-data-capture-notice>
+                      ${total} records found on page, ${inserted} new records added to database
+                      <span style="cursor: pointer" onclick="$('div[customer-data-capture-notice]').remove();">[x]</span>
+                     </div>`
+                );
+                //console.log(JSON.parse(xhr.response));
             }
         };
         xhr.open("POST", this.addDataUrl, true);
