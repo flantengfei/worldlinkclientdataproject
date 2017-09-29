@@ -9,7 +9,7 @@
         {
             "matches": [
                 "https://www.amazon.com/gp/profile/*",
-                "https://sellercentral.amazon.com/gp/orders-v2*",
+                "https://sellercentral.amazon.com/gp/orders-v2/*",
                 "file:///C:/Users/flan_/Dropbox/*"
             ],
             "js": [
